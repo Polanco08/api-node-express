@@ -13,9 +13,11 @@ No es nada del otro mundo pero sirve como aprendisaje para conocer el nuevo sist
 
 El servidor está corriendo en el puerto `8080`
 
-## Rutas
-GET:	/contactos 		- http://localhost:8080/api/contactos
-POST:	/contactos 		- http://localhost:8080/api/contactos
-GET: 	/contactos:id 	- http://localhost:8080/api/contactos/id
-DELETE: /contacto:id 	- http://localhost:8080/api/contactos/id
-UPDATE: /contactos:id 	- http://localhost:8080/api/contactos/id
+#Rutas
+| HTTP Method  | Full url                                 |
+| :-----------:| :------------------------------------   |
+| GET:	       | - http://localhost:8080/api/contactos    |
+| POST:	       | - http://localhost:8080/api/contactos    |
+| GET:	       | - http://localhost:8080/api/contactos/id |
+| DELETE:      | - http://localhost:8080/api/contactos/id |
+| UPDATE:      | - http://localhost:8080/api/contactos/id |
