@@ -6,7 +6,7 @@
 // =============================================================================//
 
 // Llamadas a los packages que necesitamos
-var express    = require('express'),        
+var express  = require('express'),
 	app        = express(),    // Definición de app express
 	bodyParser = require('body-parser'),
 	mongoose   = require('mongoose');
@@ -35,48 +35,17 @@ router.use(function(req, res, next) {
 });
 
 
-// GET: http://localhost:8080/api : 
+// GET: http://localhost:8080/api :
 // Ruta de prueba, comprobamos que todo funciona
 //-----------------------------------------------------
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+    res.json({ message: 'hooray! welcome to our api!' });
 });
-
-
-// Rutas Modulo Bears
-//------------------------------------------------------
-var BearCtrl     = require('./app/controllers/bears');
-
-
-router.route('/bears')
-    // POST: Create New http://localhost:8080/api/bears
-    .post(BearCtrl.AddNew)
-
-    // GET: Get list http://localhost:8080/api/bears
-    .get(BearCtrl.GetAll);
-
-router.route('/bears/:id')
-  .get(BearCtrl.GetById)
-  .put(BearCtrl.Update)
-  .delete(BearCtrl.Delete);
 
 
 // Rutas Modulo Contacto
 //------------------------------------------------------
-var ContactoCtrl     = require('./app/controllers/contactos');
-
-router.route('/contactos')
-	.post(ContactoCtrl.AddNew)
-	.get(ContactoCtrl.GetAll);
-	
-router.route('/contactos/:id')
-  .get(ContactoCtrl.GetById)
-  .put(ContactoCtrl.Update)
-  .delete(ContactoCtrl.Delete);
-
-// Configuramos el prefijo /API a todas las rutas
-//------------------------------------------------------
-app.use('/api', router);
+var RutasContactos     = require('./app/routes/contactos')(app);
 
 
 
@@ -84,7 +53,7 @@ app.use('/api', router);
 // ========================== INICIAMOS EL SERVIDOR ============================ //
 // ============================================================================= //
 
-mongoose.connect('mongodb://localhost/contactList', function(err, res) {  
+mongoose.connect('mongodb://localhost/contactList', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   }

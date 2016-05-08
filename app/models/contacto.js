@@ -5,7 +5,7 @@ var Schema       = mongoose.Schema;
 var ContactoSchema   = new Schema({
     name: String,
     email: String,
-    phone: String,
+    phones: Array,
     web: String
 });
 
