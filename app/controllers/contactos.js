@@ -5,9 +5,11 @@ var Contacto    = require('../models/Contacto');
 
 //GET - Retorna Todos los contactos de la BD
 //------------------------------------------------
-exports.GetAll = function(req, res) {  
+exports.GetAll = function(req, res) {
     Contacto.find(function(err, contactos) {
     if(err) res.send(500, err.message);
+
+    console.log("Dentro de GetAll() controllers");
 
     console.log('GET /contactos')
         res.status(200).jsonp(contactos);
@@ -16,9 +18,9 @@ exports.GetAll = function(req, res) {
 
 //GET - Busca contacto por su ID
 //-------------------------------------------------
-exports.GetById = function(req, res) {  
+exports.GetById = function(req, res) {
     Contacto.findById(req.params.id, function(err, contacto) {
-    if(err) 
+    if(err)
         return res.send(500, err.message);
 
     console.log('GET /contacto/' + req.params.id);
@@ -28,7 +30,7 @@ exports.GetById = function(req, res) {
 
 //POST - Crear nuevo contacto
 //------------------------------------------------
-exports.AddNew = function(req, res) {  
+exports.AddNew = function(req, res) {
     console.log('POST: /contactos');
     console.log(req.body);
 
@@ -40,7 +42,7 @@ exports.AddNew = function(req, res) {
     });
 
     contacto.save(function(err, _contacto) {
-        if(err) 
+        if(err)
             return res.status(500).send( err.message);
 
         res.status(200).jsonp({ mensaje:'Contacto añadido correctamente!', contacto: _contacto});
@@ -58,7 +60,7 @@ exports.Update = function(req, res) {
         if (err)
             res.send(err);
 
-        _contacto.name  = req.body.name; 
+        _contacto.name  = req.body.name;
         _contacto.email = req.body.email;
         _contacto.web   = req.body.web;
         _contacto.phones = req.body.phones;

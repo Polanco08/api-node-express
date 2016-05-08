@@ -14,7 +14,7 @@ Para el desarrollo de esta simple API REST, he utilizado [Nodejs](https://nodejs
 
 El servidor está corriendo en el puerto `8080`
 
-##Rutas : Contacto 
+##Rutas : Contacto
 | HTTP Method  | Url                                 | Descripción |
 | :----------- | :------------------------------------   |:-----------|
 | GET:	       | - http://localhost:8080/api/contactos    | Muestra un listado de contactos |
@@ -23,7 +23,7 @@ El servidor está corriendo en el puerto `8080`
 | DELETE:      | - http://localhost:8080/api/contactos/id | Elimina un contacto por su id |
 | PUT:         | - http://localhost:8080/api/contactos/id | Actualiza el contacto por su id |
 
-
+Todas las rutas de la aplicación se crearan dentro del directorio /app/routes - Estos archivos serán inportados desde el archivo principal app.js.
 
 ## Contacto Controller
 
@@ -56,7 +56,7 @@ exports.AddNew = function(req, res) {
     });
 
     contacto.save(function(err, _contacto) {
-        if(err) 
+        if(err)
             return res.status(500).send( err.message);
 
         res.status(200).jsonp({ mensaje:'Contacto añadido correctamente!', contacto: _contacto});
@@ -70,7 +70,7 @@ exports.AddNew = function(req, res) {
 //-------------------------------------------------
 exports.GetById = function(req, res) {  
     Contacto.findById(req.params.id, function(err, contacto) {
-    if(err) 
+    if(err)
         return res.send(500, err.message);
 
     console.log('GET /contacto/' + req.params.id);
@@ -92,7 +92,7 @@ exports.Update = function(req, res) {
         if (err)
             res.send(err);
 
-        _contacto.name  = req.body.name; 
+        _contacto.name  = req.body.name;
         _contacto.email = req.body.email;
         _contacto.web   = req.body.web;
         _contacto.phones = req.body.phones;
